@@ -14,7 +14,8 @@ void horizontal_histogram(int char_counter)
 
 void vertical_histogram(int word_lengths[10], int index, int max)
 {
-    for (int i = 0; i < max; ++i)
+    /* Prints vertical histogram (to invert the axis switch max loop to ascending) */
+    for (int i = max; i >= 0; --i)
     {
         for (int j = 0; j < index; ++j)
         {
@@ -22,6 +23,9 @@ void vertical_histogram(int word_lengths[10], int index, int max)
             if (word_lengths[j] - 1 > i)
             {
                 putchar('|');
+            }
+            else {
+                putchar(' ');
             }
         }
         putchar('\n');
