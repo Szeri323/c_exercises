@@ -8,19 +8,68 @@ void print_histogram(int word_lengths[127], int last_used_index, int max)
     for (int i = max; i >= 0; --i)
     {
         // fix for all characters in ascii
-        for (int j = 97; j < 123; ++j)
+        for (int j = 0; j < 128; ++j)
         {
-            if (word_lengths[j] >= i && i != 0)
+
+            if (j == 9)
             {
-                putchar('|');
+                if (word_lengths[j] >= i && i != 0)
+                {
+                    putchar('|');
+                }
+                else if (i == 0)
+                {
+                    printf("t");
+                }
+                else
+                {
+                    putchar(' ');
+                }
             }
-            else if (i == 0)
+            if (j == 10)
             {
-                printf("%c", j);
+                if (word_lengths[j] >= i && i != 0)
+                {
+                    putchar('|');
+                }
+                else if (i == 0)
+                {
+                    printf("n");
+                }
+                else
+                {
+                    putchar(' ');
+                }
             }
-            else
+            if (j == 32)
             {
-                putchar(' ');
+                if (word_lengths[j] >= i && i != 0)
+                {
+                    putchar('|');
+                }
+                else if (i == 0)
+                {
+                    printf("s");
+                }
+                else
+                {
+                    putchar(' ');
+                }
+            }
+            if (j >= 33)
+            {
+                if (word_lengths[j] >= i && i != 0)
+                {
+                    putchar('|');
+                }
+                else if (i == 0)
+                {
+                    printf("%c", j);
+                }
+                else
+                {
+                    putchar(' ');
+                }
             }
         }
         putchar('\n');
@@ -52,12 +101,13 @@ int main()
     }
     for (int i = 0; i < 128; ++i)
     {
-        printf("%c: %d\n", i, digits[i]);
+        // printf("%c: %c\n", i, digits[i]);
         if (digits[i] > max)
         {
             max = digits[i];
         }
     }
     print_histogram(digits, SIZE_OF_ASCII_TABLE, max);
-    printf("%d\n", max);
+    printf("first free letters in histogram stands for t - tabulator, n - new line, s - whitespace\n");
+    printf("max number of occurance of single character: %d\n", max);
 }
